@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import {
@@ -33,7 +33,7 @@ export default function MyDealsPage() {
     queryFn: () => api.get('/deals/my', {
       params: { status: status || undefined, role: role || undefined, page, limit: 10, search: search || undefined },
     }).then(r => r.data.data),
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
   });
 
   return (

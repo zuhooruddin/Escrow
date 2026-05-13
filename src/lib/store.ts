@@ -9,7 +9,7 @@ interface User {
   phone: string;
   role: 'buyer' | 'seller' | 'both' | 'admin';
   avatar?: string;
-  kyc: { status: 'pending' | 'submitted' | 'approved' | 'rejected' };
+  kyc: { status: 'pending' | 'submitted' | 'approved' | 'rejected'; documentType?: string; documentNumber?: string };
   bankDetails?: { bankName: string; accountTitle: string; iban: string; isVerified: boolean };
   stats: { totalDealsAsBuyer: number; totalDealsAsSeller: number; totalAmountEarned: number; totalAmountSpent: number };
   isEmailVerified: boolean;

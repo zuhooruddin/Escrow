@@ -1,11 +1,11 @@
 'use client';
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Search, ChevronRight, Flag } from 'lucide-react';
 import api from '@/lib/api';
 import { useAdminApiEnabled } from '@/lib/useAuthHydrated';
-import { formatPKR, formatDate, cn } from '@/lib/utils';
+import { formatPKR, formatDate } from '@/lib/utils';
 import Navbar from '@/components/layout/Navbar';
 import StatusBadge from '@/components/deals/StatusBadge';
 
@@ -18,12 +18,12 @@ export default function AdminDealsPage() {
   const [page, setPage] = useState(1);
   const [flagged, setFlagged] = useState(false);
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading } = useQuery<{ deals: any[]; total: number; pages: number }>({
     queryKey: ['admin-deals', search, status, page, flagged],
     queryFn: () => api.get('/admin/deals', {
       params: { search: search||undefined, status: status||undefined, page, limit: 20, flagged: flagged||undefined }
     }).then(r => r.data.data),
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
     enabled: adminApiEnabled,
   });
 

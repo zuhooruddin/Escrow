@@ -1,0 +1,448 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Page: soft off-white + beige section bands + deep forest CTA/footer */
+  --bg: #f9f9f7;
+  --bg-soft: #ede9e0;
+  --bg-elevated: #f5f3ee;
+
+  --ink: #0d2a1f;
+  --ink-soft: #1f3a2f;
+
+  --forest: #0f3428;
+  --forest-deep: #071a14;
+  --forest-mid: #153d30;
+
+  --gold: #c9a15a;
+  --gold-deep: #b88a3e;
+  --gold-soft: #e7d3a8;
+
+  --line: #e0ddd4;
+  --muted: #6b7c72;
+
+  /* Accent mesh (hero / trust sections) */
+  --mesh-teal: 13, 148, 136;
+  --mesh-green: 34, 110, 88;
+}
+
+/* BASE */
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* 🎯 TYPOGRAPHY */
+.font-serif-display {
+  font-family: var(--font-fraunces), Georgia, serif;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.font-sans {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* 🔥 EYEBROW TAG */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(6px);
+
+  color: #4f5f55;
+}
+
+.tag-pill::before {
+  content: "+";
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* 🎯 PRIMARY BUTTON */
+.btn-primary {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  transition: all 0.2s ease;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 2px 6px rgba(13,42,31,0.15);
+}
+
+.btn-primary:hover {
+  background: #102a1c;
+  transform: translateY(-1px);
+}
+
+/* 🎯 SECONDARY BUTTON */
+.btn-secondary {
+  background: #fdfcfa;
+  border: 1px solid var(--line);
+  color: var(--ink);
+
+  padding: 13px 22px;
+  border-radius: 10px;
+  font-size: 15px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: #ffffff;
+}
+
+/* 🎯 GOLD BUTTON */
+.btn-gold {
+  background: linear-gradient(180deg, #d4b07a 0%, #c9a15a 100%);
+  color: #fff;
+
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    0 4px 10px rgba(201,161,90,0.25);
+
+  transition: all 0.2s ease;
+}
+
+.btn-gold:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+/* 🎯 CARD */
+.card-soft {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+
+  box-shadow:
+    0 20px 40px -20px rgba(13,42,31,0.25),
+    0 10px 20px -10px rgba(13,42,31,0.12);
+}
+
+/* 🎯 UNDERLINE EFFECT */
+.gold-underline {
+  position: relative;
+}
+
+.gold-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+/* 🎯 GRID BACKGROUND */
+.subtle-grid {
+  background-image:
+    linear-gradient(to right, rgba(13,42,31,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(13,42,31,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* 🎯 TIMELINE */
+.tl-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+
+  border: 1.5px solid #d6e2d8;
+  background: #eef5ef;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #2f5c44;
+}
+
+.tl-dot.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--gold);
+}
+
+.tl-line {
+  width: 1px;
+  background: #e0d8c8;
+}
+
+/* 🎯 DIVIDER */
+.divider-soft {
+  border-top: 1px solid var(--line);
+}
+
+/* 🎯 SHADOW */
+.shadow-soft {
+  box-shadow:
+    0 2px 4px rgba(13,42,31,0.05),
+    0 12px 30px -10px rgba(13,42,31,0.15);
+}
+
+/* 🎯 HERO GRADIENT */
+.gradient-fade-bottom {
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
+}
+
+/* Dotted texture (hero) */
+.dotted-grid {
+  background-image: radial-gradient(circle, rgba(13, 42, 31, 0.045) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Faded green / teal geometric accents */
+.mesh-hero-tr {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.mesh-hero-tr::before {
+  content: "";
+  position: absolute;
+  top: -18%;
+  right: -22%;
+  width: min(78vw, 720px);
+  height: min(78vh, 640px);
+  opacity: 0.9;
+  background:
+    radial-gradient(ellipse 100% 85% at 92% 8%, rgba(var(--mesh-teal), 0.11), transparent 58%),
+    radial-gradient(ellipse 80% 70% at 100% 42%, rgba(var(--mesh-green), 0.09), transparent 52%),
+    linear-gradient(148deg, transparent 52%, rgba(var(--mesh-green), 0.06) 78%, transparent 100%),
+    conic-gradient(from 215deg at 100% 0%, rgba(var(--mesh-teal), 0.07), transparent 38%, rgba(45, 130, 108, 0.05), transparent 72%);
+}
+
+.mesh-trust-bl {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.mesh-trust-bl::before {
+  content: "";
+  position: absolute;
+  left: -28%;
+  bottom: -22%;
+  width: min(72vw, 560px);
+  height: min(75vh, 520px);
+  opacity: 0.92;
+  background:
+    radial-gradient(ellipse 95% 80% at 12% 100%, rgba(var(--mesh-green), 0.12), transparent 58%),
+    radial-gradient(ellipse 70% 60% at 0% 72%, rgba(var(--mesh-teal), 0.08), transparent 55%),
+    linear-gradient(32deg, rgba(30, 100, 82, 0.07) 0%, transparent 48%),
+    conic-gradient(from 45deg at 0% 100%, rgba(var(--mesh-teal), 0.06), transparent 42%, rgba(var(--mesh-green), 0.05), transparent 68%);
+}
+
+/* 🎯 GLOW (important for card area) */
+.glow-gold {
+  background: radial-gradient(circle at center, rgba(201,161,90,0.25), transparent 70%);
+  filter: blur(60px);
+}
+
+/* 🎯 MAP DECOR */
+.map-bg {
+  position: absolute;
+  left: -80px;
+  bottom: -60px;
+  width: 400px;
+  height: 400px;
+  opacity: 0.15;
+  pointer-events: none;
+
+  background: radial-gradient(circle at 30% 40%, #4a7a5a 0%, transparent 60%);
+  filter: blur(50px);
+}
+@layer components {
+
+  /* ── UPWORK BUTTONS ────────────────────────────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-medium rounded-full
+           transition-all duration-150 cursor-pointer select-none whitespace-nowrap
+           disabled:opacity-40 disabled:cursor-not-allowed;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+  }
+
+  .btn-sm  { @apply px-4 py-1.5 text-sm; }
+  .btn-md  { @apply px-5 py-2.5; }
+  .btn-lg  { @apply px-7 py-3.5 text-lg; }
+
+  /* Primary — Upwork green */
+  .btn-primary {
+    @apply btn btn-md bg-upwork-green text-white hover:bg-upwork-green-d
+           shadow-sm active:scale-[0.98];
+  }
+
+  /* Secondary — ghost with border */
+  .btn-secondary {
+    @apply btn btn-md bg-white text-upwork-green border border-upwork-green
+           hover:bg-upwork-green-l active:scale-[0.98];
+  }
+
+  /* Danger */
+  .btn-danger {
+    @apply btn btn-md bg-danger text-white hover:bg-red-700 active:scale-[0.98];
+  }
+
+  /* Ghost */
+  .btn-ghost {
+    @apply btn btn-md bg-transparent text-gray-700 hover:bg-gray-75 active:scale-[0.98];
+  }
+
+  /* ── UPWORK CARDS ──────────────────────────────────────────────────────── */
+  .card {
+    @apply bg-white border border-gray-150 rounded-lg shadow-card
+           transition-shadow duration-200;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-card-hover hover:border-upwork-green/30 cursor-pointer;
+  }
+
+  .card-body  { @apply p-6; }
+  .card-sm    { @apply p-4; }
+
+  /* ── UPWORK INPUTS ─────────────────────────────────────────────────────── */
+  .input {
+    @apply w-full px-4 py-3 bg-white border border-gray-200 rounded-md text-ink
+           placeholder:text-gray-400 text-base
+           transition-all duration-150 outline-none
+           focus:border-upwork-green focus:shadow-green
+           disabled:bg-gray-75 disabled:text-gray-500 disabled:cursor-not-allowed;
+    font-size: 15px;
+  }
+
+  .input-error {
+    @apply border-danger focus:border-danger focus:shadow-none;
+    box-shadow: 0 0 0 3px rgba(220,53,69,0.15);
+  }
+
+  .label {
+    @apply block text-sm font-medium text-gray-700 mb-1.5;
+  }
+
+  .form-group { @apply mb-5; }
+
+  .error-msg { @apply text-xs text-danger mt-1.5 flex items-center gap-1; }
+
+  /* ── BADGES / STATUS PILLS ─────────────────────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-pending   { @apply badge bg-amber-100   text-amber-800; }
+  .badge-funded    { @apply badge bg-blue-100    text-blue-800; }
+  .badge-delivered { @apply badge bg-purple-100  text-purple-800; }
+  .badge-completed { @apply badge bg-upwork-green-l text-upwork-green; }
+  .badge-disputed  { @apply badge bg-red-100     text-red-800; }
+  .badge-refunded  { @apply badge bg-gray-100    text-gray-600; }
+  .badge-cancelled { @apply badge bg-gray-100    text-gray-500; }
+
+  /* ── PAGE LAYOUT ────────────────────────────────────────────────────────── */
+  .page-container { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+  .section-title  { @apply text-2xl font-semibold text-ink tracking-tight; }
+  .section-sub    { @apply text-base text-gray-500 mt-1; }
+
+  /* ── SIDEBAR ────────────────────────────────────────────────────────────── */
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-md text-sm font-medium text-gray-600
+           hover:bg-upwork-green-l hover:text-upwork-green transition-all duration-150;
+  }
+
+  .sidebar-link-active {
+    @apply bg-upwork-green-l text-upwork-green;
+  }
+
+  /* ── STATS CARDS ────────────────────────────────────────────────────────── */
+  .stat-card {
+    @apply card card-body flex flex-col gap-1;
+  }
+
+  .stat-value { @apply text-3xl font-semibold text-ink tracking-tight; }
+  .stat-label { @apply text-sm text-gray-500 font-normal; }
+
+  /* ── TABLE ──────────────────────────────────────────────────────────────── */
+  .table-upwork {
+    @apply w-full text-sm;
+  }
+
+  .table-upwork thead th {
+    @apply px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider
+           border-b border-gray-100 bg-gray-50/80;
+  }
+
+  .table-upwork tbody td {
+    @apply px-4 py-4 border-b border-gray-75 text-sm text-gray-700;
+  }
+
+  .table-upwork tbody tr:hover td {
+    @apply bg-upwork-green-xl;
+  }
+
+  /* ── DIVIDER ────────────────────────────────────────────────────────────── */
+  .divider { @apply border-t border-gray-100 my-6; }
+
+  /* ── UPWORK STEP INDICATOR ─────────────────────────────────────────────── */
+  .step-active   { @apply bg-upwork-green text-white; }
+  .step-done     { @apply bg-upwork-green-l text-upwork-green; }
+  .step-inactive { @apply bg-gray-100 text-gray-400; }
+
+  /* ── NOTIFICATIONS DOT ──────────────────────────────────────────────────── */
+  .notif-dot {
+    @apply absolute -top-1 -right-1 w-4 h-4 bg-danger rounded-full text-white
+           text-[10px] font-bold flex items-center justify-center;
+  }
+
+  /* ── AVATAR ─────────────────────────────────────────────────────────────── */
+  .avatar {
+    @apply rounded-full object-cover bg-upwork-green-l flex items-center
+           justify-center text-upwork-green font-semibold overflow-hidden;
+  }
+
+  /* ── PROGRESS BAR ───────────────────────────────────────────────────────── */
+  .progress-bar {
+    @apply h-2 bg-gray-100 rounded-full overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full bg-upwork-green rounded-full transition-all duration-500;
+  }
+}

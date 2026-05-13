@@ -2,8 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['pub-*.r2.dev', 'cloudflare.com', 'ui-avatars.com'],
-    remotePatterns: [{ protocol: 'https', hostname: '**.r2.dev' }],
+    remotePatterns: [
+      { protocol: 'https', hostname: '**.r2.dev' },
+      { protocol: 'https', hostname: 'cloudflare.com' },
+      { protocol: 'https', hostname: 'ui-avatars.com' }
+    ],
   },
   async headers() {
     return [

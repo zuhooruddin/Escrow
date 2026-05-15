@@ -7,7 +7,7 @@ import '../../styles/globals.css';
 
 import {
   LayoutDashboard, FileText, PlusCircle, Bell, User,
-  Wallet, MessageSquare, ShieldCheck, TrendingUp,
+  Wallet, ShieldCheck,
 } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import { useAuthStore } from '@/lib/store';
@@ -15,16 +15,16 @@ import { useAuthHydrated } from '@/lib/useAuthHydrated';
 import { cn } from '@/lib/utils';
 
 const sidebarLinks = [
-  { href: '/dashboard',                icon: <LayoutDashboard size={18} />, label: 'Dashboard' },
-  { href: '/dashboard/deals',          icon: <FileText size={18} />,        label: 'My Deals' },
-  { href: '/dashboard/deals/create',   icon: <PlusCircle size={18} />,      label: 'New Deal' },
-  { href: '/dashboard/earnings',       icon: <Wallet size={18} />,          label: 'Earnings' },
-  { href: '/dashboard/notifications',  icon: <Bell size={18} />,            label: 'Notifications' },
-  { href: '/dashboard/profile',        icon: <User size={18} />,            label: 'Profile & KYC' },
+  { href: '/dashboard',                icon: LayoutDashboard, label: 'Dashboard' },
+  { href: '/dashboard/deals',          icon: FileText,         label: 'My Deals' },
+  { href: '/dashboard/deals/create',   icon: PlusCircle,       label: 'New Deal' },
+  { href: '/dashboard/earnings',       icon: Wallet,           label: 'Earnings' },
+  { href: '/dashboard/notifications',  icon: Bell,             label: 'Notifications' },
+  { href: '/dashboard/profile',        icon: User,             label: 'Profile & KYC' },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, isLoading } = useAuthStore();
+  const { isAuthenticated, isLoading, user } = useAuthStore();
   const authHydrated = useAuthHydrated();
   const router = useRouter();
   const pathname = usePathname();
@@ -36,49 +36,64 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   if (!authHydrated || !isAuthenticated) return null;
 
+  const kycPending = user?.kyc?.status !== 'approved';
+
   return (
-    <div className="min-h-screen bg-page">
+    <div className="min-h-screen bg-gray-50">
       <Navbar />
-      <div className="page-container py-8">
-        <div className="flex gap-8">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex gap-7">
 
           {/* ── SIDEBAR ── */}
-          <aside className="hidden lg:block w-52 flex-shrink-0">
-            <nav className="space-y-0.5 sticky top-24">
-              {sidebarLinks.map(link => {
-                const isActive = pathname === link.href ||
-                  (link.href !== '/dashboard' && pathname.startsWith(link.href));
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={cn(
-                      'sidebar-link',
-                      isActive && 'sidebar-link-active font-semibold'
-                    )}
-                  >
-                    <span className={cn(isActive ? 'text-upwork-green' : 'text-gray-400')}>
-                      {link.icon}
-                    </span>
-                    {link.label}
-                    {link.href === '/dashboard/deals/create' && (
-                      <span className="ml-auto w-1.5 h-1.5 rounded-full bg-upwork-green" />
-                    )}
-                  </Link>
-                );
-              })}
+          <aside className="hidden lg:flex flex-col w-56 flex-shrink-0">
+            <nav className="sticky top-24 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+              <div className="py-2">
+                {sidebarLinks.map(link => {
+                  const isActive = pathname === link.href ||
+                    (link.href !== '/dashboard' && pathname.startsWith(link.href));
+                  const Icon = link.icon;
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={cn(
+                        'flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-colors duration-150 relative',
+                        isActive
+                          ? 'text-emerald-700 bg-emerald-50'
+                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      )}
+                    >
+                      {isActive && (
+                        <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-emerald-600 rounded-r-full" />
+                      )}
+                      <Icon
+                        size={17}
+                        className={isActive ? 'text-emerald-600' : 'text-gray-400'}
+                      />
+                      {link.label}
+                    </Link>
+                  );
+                })}
+              </div>
 
               {/* KYC Banner */}
-              <div className="mt-6 p-3 bg-amber-50 border border-amber-200 rounded-lg">
-                <div className="flex items-center gap-2 mb-1">
-                  <ShieldCheck size={14} className="text-amber-600" />
-                  <span className="text-xs font-semibold text-amber-700">Verify Identity</span>
+              {kycPending && (
+                <div className="mx-3 mb-3 p-3.5 bg-emerald-700 rounded-xl">
+                  <div className="flex items-center gap-2 mb-1">
+                    <ShieldCheck size={14} className="text-emerald-200" />
+                    <span className="text-xs font-semibold text-white">Complete Your KYC</span>
+                  </div>
+                  <p className="text-xs text-emerald-200 mb-2.5 leading-relaxed">
+                    Verify your identity to unlock all features and ensure secure transactions.
+                  </p>
+                  <Link
+                    href="/dashboard/profile"
+                    className="flex items-center gap-1.5 text-xs font-semibold text-white bg-white/20 hover:bg-white/30 transition-colors px-3 py-1.5 rounded-lg w-full justify-center"
+                  >
+                    Complete KYC →
+                  </Link>
                 </div>
-                <p className="text-xs text-amber-600 mb-2">Complete KYC to unlock all features</p>
-                <Link href="/dashboard/profile" className="text-xs text-upwork-green font-semibold hover:underline">
-                  Complete KYC →
-                </Link>
-              </div>
+              )}
             </nav>
           </aside>
 

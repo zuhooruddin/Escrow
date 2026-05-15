@@ -1,12 +1,11 @@
 'use client';
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Search, Shield, ShieldOff, ChevronRight, User, CheckCircle2, AlertTriangle } from 'lucide-react';
+import { Search, Shield, ShieldOff, ChevronRight, Users, CheckCircle2, X } from 'lucide-react';
 import toast from 'react-hot-toast';
 import api, { getErrorMessage } from '@/lib/api';
 import { useAdminApiEnabled } from '@/lib/useAuthHydrated';
 import { formatDate, getInitials, timeAgo, cn } from '@/lib/utils';
-import Navbar from '@/components/layout/Navbar';
 
 export default function AdminUsersPage() {
   const adminApiEnabled = useAdminApiEnabled();
@@ -46,194 +45,222 @@ export default function AdminUsersPage() {
 
   const users = data?.users || [];
 
-  const kycBadge = (status: string) => {
-    const map: Record<string, string> = {
-      pending:   'bg-gray-100 text-gray-500',
-      submitted: 'bg-amber-50 text-amber-600',
-      approved:  'bg-upwork-green-l text-upwork-green',
-      rejected:  'bg-red-50 text-red-600',
-    };
-    return map[status] || map.pending;
+  const kycColors: Record<string, string> = {
+    pending:   'bg-gray-100 text-gray-500',
+    submitted: 'bg-amber-50 text-amber-600 border border-amber-200',
+    approved:  'bg-emerald-50 text-emerald-700 border border-emerald-200',
+    rejected:  'bg-red-50 text-red-600 border border-red-200',
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      <div className="page-container py-8">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h1 className="section-title">User Management</h1>
-            <p className="section-sub">{data?.total || 0} registered users</p>
-          </div>
-        </div>
+    <div className="p-6 space-y-5">
 
-        {/* Filters */}
-        <div className="card card-sm flex gap-3 flex-wrap mb-6">
-          <div className="relative flex-1 min-w-[200px]">
-            <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-            <input
-              value={search}
-              onChange={e => { setSearch(e.target.value); setPage(1); }}
-              placeholder="Search name, email, phone…"
-              className="input pl-9 py-2 text-sm"
-            />
-          </div>
-          <select value={status} onChange={e => { setStatus(e.target.value); setPage(1); }} className="input py-2 text-sm w-auto">
-            <option value="">All Status</option>
-            <option value="active">Active</option>
-            <option value="suspended">Suspended</option>
-          </select>
-        </div>
+      {/* Header */}
+      <div>
+        <h1 className="text-2xl font-bold text-gray-900 tracking-tight">User Management</h1>
+        <p className="text-sm text-gray-500 mt-0.5">{data?.total || 0} registered users</p>
+      </div>
 
-        {/* Table */}
-        <div className="card overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="table-upwork">
-              <thead>
-                <tr>
-                  <th>User</th>
-                  <th>Phone</th>
-                  <th>Role</th>
-                  <th>KYC</th>
-                  <th>Deals</th>
-                  <th>Joined</th>
-                  <th>Status</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {isLoading ? (
-                  Array.from({ length: 8 }).map((_, i) => (
-                    <tr key={i}>
-                      {Array.from({ length: 8 }).map((_, j) => (
-                        <td key={j}><div className="h-4 bg-gray-100 rounded animate-pulse w-20" /></td>
-                      ))}
-                    </tr>
-                  ))
-                ) : users.map((u: any) => (
-                  <tr key={u._id}>
-                    <td>
-                      <div className="flex items-center gap-2.5">
-                        <div className="avatar w-8 h-8 text-xs flex-shrink-0">
-                          <span>{getInitials(u.fullName)}</span>
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-ink">{u.fullName}</p>
-                          <p className="text-xs text-gray-400">{u.email}</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="text-xs text-gray-500 font-mono">{u.phone}</td>
-                    <td><span className="badge bg-gray-100 text-gray-600 capitalize">{u.role}</span></td>
-                    <td>
-                      <div className="flex items-center gap-2">
-                        <span className={cn('badge text-xs capitalize', kycBadge(u.kyc?.status))}>
-                          {u.kyc?.status}
-                        </span>
-                        {u.kyc?.status === 'submitted' && (
-                          <div className="flex gap-1">
-                            <button onClick={() => kycMutation.mutate({ userId: u._id, action: 'approve' })}
-                              className="text-xs text-upwork-green hover:underline font-medium">Approve</button>
-                            <span className="text-gray-300">|</span>
-                            <button onClick={() => kycMutation.mutate({ userId: u._id, action: 'reject' })}
-                              className="text-xs text-red-500 hover:underline font-medium">Reject</button>
-                          </div>
-                        )}
-                      </div>
-                    </td>
-                    <td>
-                      <div className="text-xs">
-                        <span className="text-gray-600">{u.stats?.totalDealsAsBuyer || 0} as buyer</span>
-                        <br />
-                        <span className="text-gray-400">{u.stats?.totalDealsAsSeller || 0} as seller</span>
-                      </div>
-                    </td>
-                    <td className="text-xs text-gray-400">{formatDate(u.createdAt)}</td>
-                    <td>
-                      <span className={cn('badge text-xs', u.isSuspended ? 'bg-red-50 text-red-600' : 'bg-upwork-green-l text-upwork-green')}>
-                        {u.isSuspended ? 'Suspended' : 'Active'}
-                      </span>
-                    </td>
-                    <td>
-                      <button onClick={() => setSelected(u)} className="text-gray-400 hover:text-ink">
-                        <ChevronRight size={16} />
-                      </button>
-                    </td>
-                  </tr>
+      {/* Filters */}
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex gap-3 flex-wrap">
+        <div className="relative flex-1 min-w-[200px]">
+          <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+          <input
+            value={search}
+            onChange={e => { setSearch(e.target.value); setPage(1); }}
+            placeholder="Search name, email, phone…"
+            className="w-full h-9 pl-9 pr-3 text-sm bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/10 transition-all"
+          />
+        </div>
+        <select
+          value={status}
+          onChange={e => { setStatus(e.target.value); setPage(1); }}
+          className="h-9 px-3 text-sm bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-emerald-500 transition-all"
+        >
+          <option value="">All Status</option>
+          <option value="active">Active</option>
+          <option value="suspended">Suspended</option>
+        </select>
+      </div>
+
+      {/* Table */}
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-gray-100">
+                {['User','Phone','Role','KYC','Deals','Joined','Status',''].map(h => (
+                  <th key={h} className="text-left px-5 py-3.5 text-xs font-semibold text-gray-500 uppercase tracking-wide">{h}</th>
                 ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Pagination */}
-          {data && data.pages > 1 && (
-            <div className="flex items-center justify-between px-4 py-3 border-t border-gray-75">
-              <p className="text-sm text-gray-400">Page {page} of {data.pages}</p>
-              <div className="flex gap-2">
-                <button onClick={() => setPage(p => Math.max(1, p-1))} disabled={page === 1} className="btn-ghost btn-sm px-3">←</button>
-                <button onClick={() => setPage(p => Math.min(data.pages, p+1))} disabled={page === data.pages} className="btn-ghost btn-sm px-3">→</button>
-              </div>
-            </div>
-          )}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-50">
+              {isLoading ? (
+                Array.from({ length: 8 }).map((_, i) => (
+                  <tr key={i}>
+                    {Array.from({ length: 8 }).map((_, j) => (
+                      <td key={j} className="px-5 py-4">
+                        <div className="h-4 bg-gray-100 rounded-lg animate-pulse w-20" />
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              ) : users.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="px-5 py-16 text-center">
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center">
+                        <Users size={22} className="text-gray-400" />
+                      </div>
+                      <p className="text-sm font-semibold text-gray-700">No users found</p>
+                    </div>
+                  </td>
+                </tr>
+              ) : users.map((u: any) => (
+                <tr key={u._id} className="hover:bg-gray-50/60 transition-colors">
+                  <td className="px-5 py-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold flex items-center justify-center flex-shrink-0">
+                        {getInitials(u.fullName)}
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900">{u.fullName}</p>
+                        <p className="text-xs text-gray-400">{u.email}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-5 py-4 text-xs text-gray-500 font-mono">{u.phone}</td>
+                  <td className="px-5 py-4">
+                    <span className="text-xs font-medium text-gray-600 bg-gray-100 px-2.5 py-1 rounded-full capitalize">{u.role}</span>
+                  </td>
+                  <td className="px-5 py-4">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className={cn('text-xs font-medium px-2.5 py-0.5 rounded-full capitalize', kycColors[u.kyc?.status] || kycColors.pending)}>
+                        {u.kyc?.status}
+                      </span>
+                      {u.kyc?.status === 'submitted' && (
+                        <div className="flex gap-1.5">
+                          <button onClick={() => kycMutation.mutate({ userId: u._id, action: 'approve' })}
+                            className="text-xs text-emerald-600 hover:text-emerald-700 font-semibold hover:underline">Approve</button>
+                          <span className="text-gray-300">·</span>
+                          <button onClick={() => kycMutation.mutate({ userId: u._id, action: 'reject' })}
+                            className="text-xs text-red-500 hover:text-red-600 font-semibold hover:underline">Reject</button>
+                        </div>
+                      )}
+                    </div>
+                  </td>
+                  <td className="px-5 py-4">
+                    <p className="text-xs text-gray-700">{u.stats?.totalDealsAsBuyer || 0} buyer</p>
+                    <p className="text-xs text-gray-400">{u.stats?.totalDealsAsSeller || 0} seller</p>
+                  </td>
+                  <td className="px-5 py-4 text-xs text-gray-400">{formatDate(u.createdAt)}</td>
+                  <td className="px-5 py-4">
+                    <span className={cn('text-xs font-semibold px-2.5 py-1 rounded-full',
+                      u.isSuspended ? 'bg-red-50 text-red-600 border border-red-200' : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                    )}>
+                      {u.isSuspended ? 'Suspended' : 'Active'}
+                    </span>
+                  </td>
+                  <td className="px-5 py-4">
+                    <button onClick={() => setSelected(u)} className="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 transition-all">
+                      <ChevronRight size={16} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
-        {/* User detail modal */}
-        {selected && (
-          <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-modal p-4">
-            <div className="bg-white rounded-xl shadow-lg max-w-md w-full p-6 animate-in">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="avatar w-12 h-12 text-base"><span>{getInitials(selected.fullName)}</span></div>
+        {data && data.pages > 1 && (
+          <div className="flex items-center justify-between px-5 py-3.5 border-t border-gray-100 bg-gray-50/50">
+            <p className="text-xs text-gray-500">Page {page} of {data.pages}</p>
+            <div className="flex gap-2">
+              <button onClick={() => setPage(p => Math.max(1, p-1))} disabled={page === 1}
+                className="px-3 py-1.5 text-xs font-medium text-gray-600 bg-white border border-gray-200 rounded-lg hover:border-gray-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all">← Prev</button>
+              <button onClick={() => setPage(p => Math.min(data.pages, p+1))} disabled={page === data.pages}
+                className="px-3 py-1.5 text-xs font-medium text-gray-600 bg-white border border-gray-200 rounded-lg hover:border-gray-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all">Next →</button>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* User Detail Modal */}
+      {selected && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+              <h3 className="text-base font-bold text-gray-900">User Details</h3>
+              <button onClick={() => { setSelected(null); setSuspendReason(''); }} className="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 transition-colors">
+                <X size={16} />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <div className="flex items-center gap-4 mb-5">
+                <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 text-base font-bold flex items-center justify-center flex-shrink-0">
+                  {getInitials(selected.fullName)}
+                </div>
                 <div>
-                  <h3 className="text-base font-semibold text-ink">{selected.fullName}</h3>
-                  <p className="text-sm text-gray-400">{selected.email}</p>
+                  <h4 className="text-base font-bold text-gray-900">{selected.fullName}</h4>
+                  <p className="text-sm text-gray-500">{selected.email}</p>
                 </div>
               </div>
 
-              <div className="space-y-2 mb-5 text-sm">
+              <div className="space-y-2 mb-5">
                 {[
                   ['Phone', selected.phone],
                   ['Role', selected.role],
                   ['KYC Status', selected.kyc?.status],
                   ['Joined', formatDate(selected.createdAt)],
-                  ['Total Deals (Buyer)', selected.stats?.totalDealsAsBuyer],
-                  ['Total Deals (Seller)', selected.stats?.totalDealsAsSeller],
-                  ['Status', selected.isSuspended ? 'Suspended' : 'Active'],
+                  ['Deals as Buyer', selected.stats?.totalDealsAsBuyer],
+                  ['Deals as Seller', selected.stats?.totalDealsAsSeller],
+                  ['Account Status', selected.isSuspended ? 'Suspended' : 'Active'],
                 ].map(([k, v]) => (
-                  <div key={k} className="flex justify-between py-1.5 border-b border-gray-75">
-                    <span className="text-gray-500">{k}</span>
-                    <span className="font-medium text-ink capitalize">{String(v)}</span>
+                  <div key={k} className="flex justify-between items-center py-2 border-b border-gray-50">
+                    <span className="text-xs text-gray-500">{k}</span>
+                    <span className="text-xs font-semibold text-gray-900 capitalize">{String(v ?? '—')}</span>
                   </div>
                 ))}
               </div>
 
               {!selected.isSuspended && (
                 <div className="mb-4">
-                  <label className="label text-sm">Suspension Reason</label>
-                  <input value={suspendReason} onChange={e => setSuspendReason(e.target.value)}
-                    className="input py-2 text-sm" placeholder="Reason for suspension…" />
+                  <label className="block text-xs font-semibold text-gray-700 mb-1.5">Suspension Reason</label>
+                  <input
+                    value={suspendReason}
+                    onChange={e => setSuspendReason(e.target.value)}
+                    className="w-full h-9 px-3 text-sm bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-emerald-500 transition-all"
+                    placeholder="Reason for suspension…"
+                  />
                 </div>
               )}
 
               <div className="flex gap-3">
-                <button onClick={() => { setSelected(null); setSuspendReason(''); }} className="btn-ghost flex-1">
+                <button onClick={() => { setSelected(null); setSuspendReason(''); }}
+                  className="flex-1 h-10 text-sm font-semibold text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors">
                   Close
                 </button>
                 <button
                   onClick={() => suspendMutation.mutate()}
                   disabled={suspendMutation.isPending || (!selected.isSuspended && !suspendReason)}
-                  className={cn('flex-1 btn', selected.isSuspended ? 'btn-secondary' : 'btn-danger')}
-                >
-                  {selected.isSuspended ? (
-                    <><CheckCircle2 size={14} /> Reinstate</>
-                  ) : (
-                    <><ShieldOff size={14} /> Suspend</>
+                  className={cn(
+                    'flex-1 h-10 text-sm font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed',
+                    selected.isSuspended
+                      ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                      : 'bg-red-500 hover:bg-red-600 text-white'
                   )}
+                >
+                  {selected.isSuspended
+                    ? <><CheckCircle2 size={14} /> Reinstate</>
+                    : <><ShieldOff size={14} /> Suspend</>
+                  }
                 </button>
               </div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

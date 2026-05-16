@@ -119,7 +119,7 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <p className="relative z-10 hidden text-[11.5px] text-white/30 md:block">© 2024 EscrowPK. All rights reserved.</p>
+          <p className="relative z-10 hidden text-[11.5px] text-white/30 md:block">© 2024 Rakhwali PK. All rights reserved.</p>
         </div>
 
         <div className="relative flex items-center justify-center overflow-hidden bg-ivory py-9 px-6 md:px-8 md:py-12">

@@ -377,7 +377,7 @@ export default function ForgotPasswordPage() {
             </div>
           </div>
 
-          <p className="epk-left-foot">© 2024 EscrowPK. All rights reserved.</p>
+          <p className="epk-left-foot">© 2024 Rakhwali PK. All rights reserved.</p>
         </div>
 
         {/* ── Right panel ── */}
@@ -457,7 +457,7 @@ export default function ForgotPasswordPage() {
               <Lock />
               SSL encrypted · Your data is safe
             </div>
-            <p className="epk-footer-note">© 2024 EscrowPK. All rights reserved.</p>
+            <p className="epk-footer-note">© 2024 Rakhwali PK. All rights reserved.</p>
           </div>
         </div>
       </div>

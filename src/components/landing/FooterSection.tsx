@@ -23,7 +23,7 @@ const FooterSection = () => (
           Safe. Fair. Simple. Instant infrastructure.
         </p>
         <p className="mt-5 uppercase tracking-widest" style={{ fontSize: 12, color: '#B1B1A5', opacity: 0.5 }}>
-          &copy; 2025 Escrowpk Contributors Pvt. Ltd.
+          &copy; 2025 Rakhwali pk Contributors Pvt. Ltd.
         </p>
       </div>
 

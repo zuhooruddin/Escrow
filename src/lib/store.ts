@@ -109,7 +109,7 @@ export const useAuthStore = create<AuthState>()(
       })),
     }),
     {
-      name: 'escrowpk-auth',
+      name: 'rakhwalipk-auth',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         user: state.user,

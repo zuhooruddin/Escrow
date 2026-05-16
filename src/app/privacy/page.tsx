@@ -2,7 +2,7 @@ import NavSection from '@/components/landing/NavSection'
 import FooterSection from '@/components/landing/FooterSection'
 import PrivacyContent from './PrivacyContent'
 
-export const metadata = { title: 'Privacy Policy — EscrowPK' }
+export const metadata = { title: 'Privacy Policy — Rakhwali PK' }
 
 export default function PrivacyPage() {
   return (

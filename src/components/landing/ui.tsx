@@ -26,7 +26,7 @@ export const Logo = ({ className = '' }: LogoProps) => (
     <div className="relative w-8 h-8 rounded-[10px] bg-[#0d2a1f] flex items-center justify-center">
       <span className="font-serif text-[#f4efe6] text-[18px] leading-none font-semibold">A</span>
     </div>
-    <span className="font-serif text-[20px] font-medium tracking-tight">Escrowpk</span>
+    <span className="font-serif text-[20px] font-medium tracking-tight">Rakhwali pk</span>
   </div>
 )
 

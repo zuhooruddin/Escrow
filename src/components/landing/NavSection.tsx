@@ -43,7 +43,7 @@ export default function NavSection() {
           <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[7px] bg-[#0d2a1f]">
             <span className="text-[13px] font-semibold leading-none text-white">A</span>
           </div>
-          <span className="text-[15px] font-medium tracking-tight text-[#0d2a1f]">Escrowpk</span>
+          <span className="text-[15px] font-medium tracking-tight text-[#0d2a1f]">Rakhwali pk</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

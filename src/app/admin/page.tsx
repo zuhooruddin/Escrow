@@ -75,7 +75,7 @@ export default function AdminDashboard() {
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-sm text-gray-500 font-medium">Welcome back,</p>
-          <h1 className="text-2xl font-bold text-gray-900 tracking-tight">EscrowPK Admin</h1>
+          <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Rakhwali PK Admin</h1>
           <p className="text-sm text-gray-500 mt-0.5">Here's what's happening on your platform today.</p>
         </div>
         <div className="hidden sm:flex items-center gap-2 text-xs font-medium text-gray-500 border border-gray-200 bg-white px-3 py-2 rounded-xl shadow-sm">

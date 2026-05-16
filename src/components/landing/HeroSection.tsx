@@ -106,7 +106,7 @@ const HeroSection = () => (
         </h1>
 
         <p className="mt-6 text-[16px] leading-[1.7] text-[#0d2a1f]/70 max-w-[520px]">
-          Escrowpk locks the buyer’s funds securely in an audited account until
+          Rakhwali pk locks the buyer’s funds securely in an audited account until
           your work is delivered and approved. No more chasing payments. Just
           clean, fair, end-to-end backed transactions.
         </p>

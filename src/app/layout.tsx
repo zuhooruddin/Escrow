@@ -5,7 +5,7 @@ import Providers from '@/components/Providers';
 import { Fraunces, Inter } from 'next/font/google'
 
 export const metadata: Metadata = {
-  title: { default: 'EscrowPK — Pakistan\'s Trusted Escrow Platform', template: '%s | EscrowPK' },
+  title: { default: 'Rakhwali PK — Pakistan\'s Trusted Escrow Platform', template: '%s | Rakhwali PK' },
   description: 'Secure escrow payments for Pakistan. Protect buyers and sellers with trusted third-party fund holding.',
   keywords: ['escrow', 'pakistan', 'freelance', 'secure payment', 'jazzcash', 'easypaisa'],
   icons: { icon: '/favicon.ico' },

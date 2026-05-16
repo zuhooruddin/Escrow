@@ -2,7 +2,7 @@ import Link from 'next/link'
 import NavSection from '@/components/landing/NavSection'
 import FooterSection from '@/components/landing/FooterSection'
 
-export const metadata = { title: 'Blog — EscrowPK' }
+export const metadata = { title: 'Blog — Rakhwali PK' }
 
 const posts = [
   {
@@ -32,7 +32,7 @@ const posts = [
   {
     slug:     'dispute-resolution-guide',
     tag:      'Platform',
-    title:    'Understanding EscrowPK\'s Dispute Resolution Process',
+    title:    'Understanding Rakhwali PK\'s Dispute Resolution Process',
     excerpt:  'What happens when buyer and seller disagree? Walk through our step-by-step dispute resolution process and how we ensure fairness.',
     date:     'March 30, 2025',
     readTime: '7 min read',
@@ -72,7 +72,7 @@ export default function BlogPage() {
       {/* Header */}
       <section className="bg-[#071a14] text-white pt-24 pb-16 px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-[11px] font-semibold tracking-[0.2em] text-[#c9a15a] uppercase mb-4">EscrowPK Blog</p>
+          <p className="text-[11px] font-semibold tracking-[0.2em] text-[#c9a15a] uppercase mb-4">Rakhwali PK Blog</p>
           <h1 className="font-bold text-4xl sm:text-5xl tracking-tight mb-5">
             Insights & Guides
           </h1>

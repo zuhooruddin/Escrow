@@ -3,15 +3,15 @@ import NavSection from '@/components/landing/NavSection'
 import FooterSection from '@/components/landing/FooterSection'
 import { Mail, Phone, MapPin, Clock, MessageSquare, ShieldCheck, FileText } from 'lucide-react'
 
-export const metadata = { title: 'Contact Us — EscrowPK' }
+export const metadata = { title: 'Contact Us — Rakhwali PK' }
 
 const channels = [
   {
     icon: Mail,
     title: 'Email Support',
     desc: 'For general inquiries and account help',
-    value: 'support@escrowpk.com',
-    href: 'mailto:support@escrowpk.com',
+    value: 'support@rakhwalipk.com',
+    href: 'mailto:support@rakhwalipk.com',
     badge: 'Replies within 24h',
     badgeStyle: { background: '#E8F5E9', color: '#2E7D32' },
   },
@@ -19,8 +19,8 @@ const channels = [
     icon: ShieldCheck,
     title: 'Legal & Compliance',
     desc: 'Privacy, terms, and regulatory matters',
-    value: 'legal@escrowpk.com',
-    href: 'mailto:legal@escrowpk.com',
+    value: 'legal@rakhwalipk.com',
+    href: 'mailto:legal@rakhwalipk.com',
     badge: 'Replies within 48h',
     badgeStyle: { background: '#E3F2FD', color: '#1565C0' },
   },
@@ -28,8 +28,8 @@ const channels = [
     icon: MessageSquare,
     title: 'Dispute Resolution',
     desc: 'Escalate an unresolved transaction issue',
-    value: 'disputes@escrowpk.com',
-    href: 'mailto:disputes@escrowpk.com',
+    value: 'disputes@rakhwalipk.com',
+    href: 'mailto:disputes@rakhwalipk.com',
     badge: 'Priority queue',
     badgeStyle: { background: '#FFF8E1', color: '#F57F17' },
   },

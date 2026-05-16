@@ -3,7 +3,7 @@ import NavSection from '@/components/landing/NavSection'
 import FooterSection from '@/components/landing/FooterSection'
 import { ShieldCheck, Users, Zap, Globe } from 'lucide-react'
 
-export const metadata = { title: 'About Us — EscrowPK' }
+export const metadata = { title: 'About Us — Rakhwali PK' }
 
 const values = [
   {
@@ -24,7 +24,7 @@ const values = [
   {
     icon: Globe,
     title: 'Open Platform',
-    desc: 'From freelancers to vehicle dealers, EscrowPK platform gives any transaction both parties protection.',
+    desc: 'From freelancers to vehicle dealers, Rakhwali PK platform gives any transaction both parties protection.',
   },
 ]
 
@@ -49,7 +49,7 @@ export default function AboutPage() {
           {/* Hero — dark, min 340px */}
           <div className="bg-[#0D2A26] px-10 pt-20 pb-16" style={{ minHeight: 340 }}>
             <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-[#c9a15a] mb-5">
-              About EscrowPK
+              About Rakhwali PK
             </p>
             <h1
               className="font-extrabold leading-[1.2] tracking-tight text-white mb-5"
@@ -58,7 +58,7 @@ export default function AboutPage() {
               Pakistan's most trusted<br />escrow platform
             </h1>
             <p className="text-white/55 max-w-[60%]" style={{ fontSize: 16, lineHeight: 1.6 }}>
-              We started EscrowPK because online trust in Pakistan was broken. Buyers got scammed,
+              We started Rakhwali PK because online trust in Pakistan was broken. Buyers got scammed,
               sellers went unpaid. We built a simple, secure escrow layer so every transaction —
               big or small — is protected.
             </p>
@@ -74,7 +74,7 @@ export default function AboutPage() {
             </h2>
             <p className="text-gray-500 mb-3" style={{ fontSize: 15, lineHeight: 1.6 }}>
               Commerce shouldn't require blind trust. Whether you're paying a freelancer in Karachi,
-              buying a car in Lahore, or closing a deal with a supplier in Islamabad — EscrowPK
+              buying a car in Lahore, or closing a deal with a supplier in Islamabad — Rakhwali PK
               holds funds securely until both sides are satisfied.
             </p>
             <p className="text-gray-500 mb-8" style={{ fontSize: 15, lineHeight: 1.6 }}>
@@ -138,7 +138,7 @@ export default function AboutPage() {
               Our Values
             </p>
             <h2 className="font-extrabold text-white mb-6" style={{ fontSize: 22 }}>
-              People behind EscrowPK
+              People behind Rakhwali PK
             </h2>
             <div className="grid grid-cols-2 gap-6">
               {values.map(({ icon: Icon, title, desc }) => (
@@ -159,7 +159,7 @@ export default function AboutPage() {
               The Team
             </p>
             <h2 className="font-extrabold text-white mb-8" style={{ fontSize: 22 }}>
-              People behind EscrowPK
+              People behind Rakhwali PK
             </h2>
             <div className="grid grid-cols-4 gap-4">
               {team.map(({ name, role, initials }) => (

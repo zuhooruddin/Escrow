@@ -384,7 +384,7 @@ function ResetPasswordContent() {
             </div>
           </div>
 
-          <p className="epk-left-foot">© 2024 EscrowPK. All rights reserved.</p>
+          <p className="epk-left-foot">© 2024 Rakhwali PK. All rights reserved.</p>
         </div>
 
         {/* ── Right panel ── */}
@@ -500,7 +500,7 @@ function ResetPasswordContent() {
             <div className="epk-secure">
               <Lock /> SSL encrypted · Your data is safe
             </div>
-            <p className="epk-footer-note">© 2024 EscrowPK. All rights reserved.</p>
+            <p className="epk-footer-note">© 2024 Rakhwali PK. All rights reserved.</p>
           </div>
         </div>
 

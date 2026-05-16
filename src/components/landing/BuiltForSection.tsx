@@ -117,7 +117,7 @@ export default function BuiltForSection() {
 
           <p className="mt-3.5 max-w-[380px] text-[13.5px] leading-[1.65] text-[#0d2a1f]/58">
             Whether you&apos;re a creator, freelancer, gamer, or a digital
-            commerce merchant — Escrowpk works with your local economy.
+            commerce merchant — Rakhwali pk works with your local economy.
           </p>
 
           <div className="mt-7 grid grid-cols-2 gap-3.5">

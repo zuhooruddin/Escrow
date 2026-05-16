@@ -258,7 +258,7 @@ export default function PaymentPage() {
 
       <div className="flex items-center gap-2 text-xs text-gray-400 justify-center">
         <Shield size={12} className="text-upwork-green" />
-        256-bit SSL encrypted · Powered by EscrowPK
+        256-bit SSL encrypted · Powered by Rakhwali PK
       </div>
     </div>
   );

@@ -65,7 +65,7 @@ const sections = [
     nav: '8. Your Rights',
     icon: UserCheck,
     title: '8. Your Rights',
-    body: `You have the right to: access a copy of your personal data; request correction of inaccurate data; request deletion of your account and associated data (subject to legal retention obligations); object to certain processing activities; and withdraw consent where processing is consent-based. To exercise these rights, email privacy@escrowpk.com.`,
+    body: `You have the right to: access a copy of your personal data; request correction of inaccurate data; request deletion of your account and associated data (subject to legal retention obligations); object to certain processing activities; and withdraw consent where processing is consent-based. To exercise these rights, email privacy@rakhwalipk.com.`,
   },
   {
     id: 'retention',
@@ -79,21 +79,21 @@ const sections = [
     nav: '10. Children\'s Privacy',
     icon: Baby,
     title: '10. Children\'s Privacy',
-    body: `EscrowPK is not intended for use by persons under 18 years of age. We do not knowingly collect personal information from minors. If we become aware that a minor has provided us with personal information, we will delete it immediately.`,
+    body: `Rakhwali PK is not intended for use by persons under 18 years of age. We do not knowingly collect personal information from minors. If we become aware that a minor has provided us with personal information, we will delete it immediately.`,
   },
   {
     id: 'changes',
     nav: '11. Changes to This Policy',
     icon: RefreshCw,
     title: '11. Changes to This Policy',
-    body: `We may update this Privacy Policy periodically. We will notify you of material changes via email and by posting the updated policy on this page with a revised effective date. Your continued use of EscrowPK after changes take effect constitutes acceptance of the updated policy.`,
+    body: `We may update this Privacy Policy periodically. We will notify you of material changes via email and by posting the updated policy on this page with a revised effective date. Your continued use of Rakhwali PK after changes take effect constitutes acceptance of the updated policy.`,
   },
   {
     id: 'contact',
     nav: '12. Contact Us',
     icon: Mail,
     title: '12. Contact Us',
-    body: `For privacy-related questions or to exercise your rights, contact our Data Protection Officer at privacy@escrowpk.com. You may also write to: Escrowpk Contributors Pvt. Ltd., Lahore, Pakistan.`,
+    body: `For privacy-related questions or to exercise your rights, contact our Data Protection Officer at privacy@rakhwalipk.com. You may also write to: Rakhwali pk Contributors Pvt. Ltd., Lahore, Pakistan.`,
   },
 ]
 
@@ -233,15 +233,15 @@ export default function PrivacyContent() {
                   icon: Mail,
                   label: 'Privacy Questions',
                   sub: 'We may collect to maintain requests',
-                  email: 'privacy@escrowpk.com',
-                  href: 'mailto:privacy@escrowpk.com',
+                  email: 'privacy@rakhwalipk.com',
+                  href: 'mailto:privacy@rakhwalipk.com',
                 },
                 {
                   icon: Shield,
                   label: 'Legal Enquiries',
                   sub: 'For legal or compliance contact',
-                  email: 'legal@escrowpk.com',
-                  href: 'mailto:legal@escrowpk.com',
+                  email: 'legal@rakhwalipk.com',
+                  href: 'mailto:legal@rakhwalipk.com',
                 },
               ].map(({ icon: Icon, label, sub, email, href }) => (
                 <div key={label} style={{ background: '#F4F4F4', borderRadius: 12, padding: 20 }}>

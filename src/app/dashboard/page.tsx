@@ -93,7 +93,7 @@ export default function DashboardPage() {
               {user?.kyc?.status === 'rejected'  && 'KYC rejected — please resubmit your documents'}
             </p>
             <p className="text-xs text-amber-600 mt-0.5">
-              KYC verification is required to create funded deals on EscrowPK
+              KYC verification is required to create funded deals on Rakhwali PK
             </p>
           </div>
           {user?.kyc?.status !== 'submitted' && (

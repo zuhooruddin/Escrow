@@ -6,7 +6,7 @@ import {
   AlertTriangle, Scale, Ban, AlertCircle, FileEdit, Gavel, Phone,
 } from 'lucide-react'
 
-export const metadata = { title: 'Terms of Service — EscrowPK' }
+export const metadata = { title: 'Terms of Service — Rakhwali PK' }
 
 const sections = [
   {
@@ -14,28 +14,28 @@ const sections = [
     nav: '1. Acceptance',
     icon: Clock,
     title: '1. Acceptance of Terms',
-    body: `By accessing or using EscrowPK ("the Platform"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Platform. EscrowPK is operated by Escrowpk Contributors, Pvt. Ltd., a company registered in Pakistan.`,
+    body: `By accessing or using Rakhwali PK ("the Platform"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Platform. Rakhwali PK is operated by Rakhwali pk Contributors, Pvt. Ltd., a company registered in Pakistan.`,
   },
   {
     id: 'eligibility',
     nav: '2. Eligibility',
     icon: BadgeCheck,
     title: '2. Eligibility',
-    body: `You must be at least 18 years of age and a resident of Pakistan to use EscrowPK. By creating an account, you represent and warrant that you meet these requirements. We reserve the right to terminate accounts that do not comply with eligibility requirements.`,
+    body: `You must be at least 18 years of age and a resident of Pakistan to use Rakhwali PK. By creating an account, you represent and warrant that you meet these requirements. We reserve the right to terminate accounts that do not comply with eligibility requirements.`,
   },
   {
     id: 'escrow',
     nav: '3. Escrow Service',
     icon: ShieldCheck,
     title: '3. The Escrow Service',
-    body: `EscrowPK acts as a neutral third-party escrow agent. When a buyer initiates a deal, funds are held securely by EscrowPK until the agreed deliverables are met. Funds are released to the seller only after the buyer confirms satisfaction, or after the dispute resolution process concludes in the seller's favour.`,
+    body: `Rakhwali PK acts as a neutral third-party escrow agent. When a buyer initiates a deal, funds are held securely by Rakhwali PK until the agreed deliverables are met. Funds are released to the seller only after the buyer confirms satisfaction, or after the dispute resolution process concludes in the seller's favour.`,
   },
   {
     id: 'fees',
     nav: '4. Fees',
     icon: DollarSign,
     title: '4. Fees',
-    body: `EscrowPK charges a flat platform fee of 2% on every successfully completed transaction. This fee is deducted from the seller's payout. There are no fees for creating an account, initiating a deal, or refunded transactions. We reserve the right to update our fee structure with 30 days' notice.`,
+    body: `Rakhwali PK charges a flat platform fee of 2% on every successfully completed transaction. This fee is deducted from the seller's payout. There are no fees for creating an account, initiating a deal, or refunded transactions. We reserve the right to update our fee structure with 30 days' notice.`,
     highlight: '2%',
   },
   {
@@ -43,7 +43,7 @@ const sections = [
     nav: '5. KYC & Verification',
     icon: UserCheck,
     title: '5. KYC & Identity Verification',
-    body: `To create funded deals, all users must complete Know Your Customer (KYC) verification by submitting a valid CNIC. EscrowPK may reject or suspend accounts where verification cannot be completed or where fraudulent documents are detected. KYC information is handled in accordance with our Privacy Policy.`,
+    body: `To create funded deals, all users must complete Know Your Customer (KYC) verification by submitting a valid CNIC. Rakhwali PK may reject or suspend accounts where verification cannot be completed or where fraudulent documents are detected. KYC information is handled in accordance with our Privacy Policy.`,
   },
   {
     id: 'obligations',
@@ -57,21 +57,21 @@ const sections = [
     nav: '7. Dispute Resolution',
     icon: Scale,
     title: '7. Dispute Resolution',
-    body: `If a buyer and seller cannot resolve a disagreement, either party may raise a formal dispute through the Platform. EscrowPK's admin team will review all submitted evidence and issue a binding verdict within 72 hours. Verdicts may result in a full release to seller, full refund to buyer, or a partial split. EscrowPK's decision is final.`,
+    body: `If a buyer and seller cannot resolve a disagreement, either party may raise a formal dispute through the Platform. Rakhwali PK's admin team will review all submitted evidence and issue a binding verdict within 72 hours. Verdicts may result in a full release to seller, full refund to buyer, or a partial split. Rakhwali PK's decision is final.`,
   },
   {
     id: 'prohibited',
     nav: '8. Prohibited Activities',
     icon: Ban,
     title: '8. Prohibited Activities',
-    body: `You may not use EscrowPK for transactions involving: illegal goods or services, weapons, narcotics, counterfeit items, adult content, gambling, or any activity prohibited under Pakistani law. Violation of this clause results in immediate account termination and potential legal action.`,
+    body: `You may not use Rakhwali PK for transactions involving: illegal goods or services, weapons, narcotics, counterfeit items, adult content, gambling, or any activity prohibited under Pakistani law. Violation of this clause results in immediate account termination and potential legal action.`,
   },
   {
     id: 'liability',
     nav: '9. Limitation of Liability',
     icon: AlertCircle,
     title: '9. Limitation of Liability',
-    body: `EscrowPK is not liable for indirect, incidental, or consequential damages arising from your use of the Platform. Our total liability for any claim arising under these Terms shall not exceed the platform fees paid by you in the 3 months preceding the claim.`,
+    body: `Rakhwali PK is not liable for indirect, incidental, or consequential damages arising from your use of the Platform. Our total liability for any claim arising under these Terms shall not exceed the platform fees paid by you in the 3 months preceding the claim.`,
   },
   {
     id: 'modifications',
@@ -92,7 +92,7 @@ const sections = [
     nav: '12. Contact',
     icon: Phone,
     title: '12. Contact',
-    body: `For questions about these Terms, contact us at legal@escrowpk.com or write to: Escrowpk Contributors Pvt. Ltd., Lahore, Pakistan.`,
+    body: `For questions about these Terms, contact us at legal@rakhwalipk.com or write to: Rakhwali pk Contributors Pvt. Ltd., Lahore, Pakistan.`,
   },
 ]
 
@@ -140,7 +140,7 @@ export default function TermsPage() {
           }}
         >
           <p style={{ fontSize: 15, lineHeight: 1.6, color: '#5A4A2A' }}>
-            <strong>Summary:</strong> EscrowPK holds your funds securely, charges a{' '}
+            <strong>Summary:</strong> Rakhwali PK holds your funds securely, charges a{' '}
             <span style={{ color: '#A6805B', fontWeight: 600 }}>2% fee</span> on completed deals,
             requires identity verification, and provides binding dispute resolution.
             Please read the full terms below.
@@ -209,7 +209,7 @@ export default function TermsPage() {
             >
               <p style={{ fontSize: 18, color: '#4A4A4A' }}>Have questions about our terms?</p>
               <Link
-                href="mailto:legal@escrowpk.com"
+                href="mailto:legal@rakhwalipk.com"
                 className="inline-flex items-center font-semibold text-white transition-opacity hover:opacity-85 mt-4"
                 style={{
                   background: '#142921',

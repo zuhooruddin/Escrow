@@ -32,7 +32,7 @@ const STEPS: Step[] = [
     n: 3,
     icon: Lock,
     title: "Funds locked",
-    body: "Buyer deposits the funds. Escrowpk holds it in a segregated escrow account.",
+    body: "Buyer deposits the funds. Rakhwali pk holds it in a segregated escrow account.",
     filled: true,
   },
   {

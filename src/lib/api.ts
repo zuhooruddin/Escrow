@@ -14,7 +14,7 @@ const api = axios.create({
 api.interceptors.request.use((config) => {
   if (typeof window !== 'undefined') {
     try {
-      const stored = localStorage.getItem('escrowpk-auth');
+      const stored = localStorage.getItem('rakhwalipk-auth');
       if (stored) {
         const { state } = JSON.parse(stored);
         if (state?.accessToken) {
@@ -64,7 +64,7 @@ api.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        const stored = localStorage.getItem('escrowpk-auth');
+        const stored = localStorage.getItem('rakhwalipk-auth');
         if (stored) {
           const { state } = JSON.parse(stored);
           if (state?.refreshToken) {
@@ -76,7 +76,7 @@ api.interceptors.response.use(
             const parsed = JSON.parse(stored);
             parsed.state.accessToken = newAccessToken;
             parsed.state.refreshToken = data.data.refreshToken;
-            localStorage.setItem('escrowpk-auth', JSON.stringify(parsed));
+            localStorage.setItem('rakhwalipk-auth', JSON.stringify(parsed));
 
             processQueue(null, newAccessToken);
             originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
@@ -85,7 +85,7 @@ api.interceptors.response.use(
         }
       } catch (refreshError) {
         processQueue(refreshError, null);
-        localStorage.removeItem('escrowpk-auth');
+        localStorage.removeItem('rakhwalipk-auth');
         window.location.href = '/auth/login';
       } finally {
         isRefreshing = false;

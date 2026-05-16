@@ -5,10 +5,21 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { Search, Info, Calendar, DollarSign, User, Tag, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { Info, Calendar, DollarSign, User, Tag, ChevronRight, CheckCircle2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import api, { getErrorMessage } from '@/lib/api';
 import { formatPKR, CATEGORY_LABELS, cn } from '@/lib/utils';
+
+const DEADLINE_OPTIONS = [
+  { label: '1 Day', days: 1 },
+  { label: '2 Days', days: 2 },
+  { label: '3 Days', days: 3 },
+  { label: '4 Days', days: 4 },
+  { label: '5 Days', days: 5 },
+  { label: '6 Days', days: 6 },
+  { label: '7 Days', days: 7 },
+  { label: 'Custom', days: 0 },
+];
 
 const schema = z.object({
   title: z.string().min(5, 'Title must be at least 5 characters').max(200),
@@ -28,6 +39,7 @@ export default function CreateDealPage() {
   const [step, setStep] = useState(0);
   const [sellerInfo, setSellerInfo] = useState<any>(null);
   const [sellerSearch, setSellerSearch] = useState('');
+  const [deadlineDays, setDeadlineDays] = useState<number | null>(null);
 
   const { register, handleSubmit, watch, setValue, trigger, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -239,12 +251,44 @@ export default function CreateDealPage() {
                   <Calendar size={14} className="inline mr-1 text-gray-400" />
                   Work Deadline <span className="text-danger">*</span>
                 </label>
-                <input
-                  {...register('deadline')}
-                  type="date"
-                  min={new Date(Date.now() + 86400000).toISOString().split('T')[0]}
-                  className={cn('input', errors.deadline && 'input-error')}
-                />
+
+                {/* Preset day buttons */}
+                <div className="grid grid-cols-4 gap-2 mb-2">
+                  {DEADLINE_OPTIONS.map(opt => (
+                    <button
+                      key={opt.label}
+                      type="button"
+                      onClick={() => {
+                        setDeadlineDays(opt.days);
+                        if (opt.days > 0) {
+                          const d = new Date(Date.now() + opt.days * 86400000);
+                          setValue('deadline', d.toISOString().split('T')[0]);
+                        } else {
+                          setValue('deadline', '');
+                        }
+                      }}
+                      className={cn(
+                        'py-2 px-1 rounded-lg border text-sm font-medium transition-all',
+                        deadlineDays === opt.days
+                          ? 'border-upwork-green bg-upwork-green-l text-upwork-green'
+                          : 'border-gray-200 bg-white text-gray-600 hover:border-upwork-green/50'
+                      )}
+                    >
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Custom date picker — shown only when Custom is selected */}
+                {deadlineDays === 0 && (
+                  <input
+                    {...register('deadline')}
+                    type="date"
+                    min={new Date(Date.now() + 86400000).toISOString().split('T')[0]}
+                    className={cn('input mt-1', errors.deadline && 'input-error')}
+                  />
+                )}
+
                 {errors.deadline && <p className="error-msg">{errors.deadline.message}</p>}
                 <p className="text-xs text-gray-400 mt-1.5">
                   Seller must deliver before this date. You can raise a dispute after the deadline passes.

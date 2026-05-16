@@ -47,9 +47,6 @@ export default function MyDealsPage() {
             {data?.total ? `${data.total} total deals` : 'All your escrow transactions'}
           </p>
         </div>
-        <Link href="/dashboard/deals/create" className="btn-primary self-start">
-          <Plus size={16} /> New Deal
-        </Link>
       </div>
 
       {/* ── FILTERS ── */}

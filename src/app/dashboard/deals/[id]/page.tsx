@@ -17,6 +17,30 @@ import {
 } from '@/lib/utils';
 import StatusBadge from '@/components/deals/StatusBadge';
 
+// ── responsive styles (defined once, outside component) ──────────────────────
+const RESPONSIVE_CSS = `
+  .dd-body { padding: 16px; flex-direction: column !important; }
+  .dd-side { width: 100% !important; flex-shrink: unset !important; }
+  .dd-hero-top { flex-direction: column !important; gap: 10px !important; }
+  .dd-amount { text-align: left !important; }
+  .dd-hero-pad { padding: 18px 16px !important; }
+  .dd-ms-pad { padding: 14px 16px 18px !important; }
+  .dd-tabs { padding: 0 16px !important; }
+  .dd-tab-content { padding: 18px 16px !important; }
+  .dd-ms-label { font-size: 9px !important; }
+  @media (min-width: 768px) {
+    .dd-body { padding: 28px 32px; flex-direction: row !important; }
+    .dd-side { width: 308px !important; flex-shrink: 0 !important; }
+    .dd-hero-top { flex-direction: row !important; gap: 0 !important; }
+    .dd-amount { text-align: right !important; }
+    .dd-hero-pad { padding: 24px 28px !important; }
+    .dd-ms-pad { padding: 16px 28px 20px !important; }
+    .dd-tabs { padding: 0 28px !important; }
+    .dd-tab-content { padding: 24px 28px !important; }
+    .dd-ms-label { font-size: 11px !important; }
+  }
+`;
+
 // ── design tokens ─────────────────────────────────────────────────────────────
 const T = {
   teal:     '#0fa88a',
@@ -58,6 +82,7 @@ export default function DealDetailPage() {
   const { data, isLoading } = useQuery({
     queryKey: ['deal', id],
     queryFn: () => api.get(`/deals/${id}`).then(r => r.data.data),
+    staleTime: 30 * 1000,
   });
 
   const deal = data?.deal;
@@ -98,7 +123,8 @@ export default function DealDetailPage() {
   const { data: bankDetails } = useQuery({
     queryKey: ['bank-details'],
     queryFn: () => api.get('/payments/bank-details').then(r => r.data.data),
-    enabled: isBuyer,
+    enabled: isBuyer && deal?.status === 'PENDING' && !!deal?.sellerAcceptedAt && payMethod === 'bank_transfer',
+    staleTime: 10 * 60 * 1000,
   });
   const jazzMutation = useMutation({
     mutationFn: () => api.post(`/payments/${id}/jazzcash`),
@@ -184,28 +210,7 @@ export default function DealDetailPage() {
 
   return (
     <div style={{ background: T.surface, minHeight: '100vh', margin: '-24px -32px', padding: '0 0 48px' }}>
-      <style>{`
-        .dd-body { padding: 16px; flex-direction: column !important; }
-        .dd-side { width: 100% !important; flex-shrink: unset !important; }
-        .dd-hero-top { flex-direction: column !important; gap: 10px !important; }
-        .dd-amount { text-align: left !important; }
-        .dd-hero-pad { padding: 18px 16px !important; }
-        .dd-ms-pad { padding: 14px 16px 18px !important; }
-        .dd-tabs { padding: 0 16px !important; }
-        .dd-tab-content { padding: 18px 16px !important; }
-        .dd-ms-label { font-size: 9px !important; }
-        @media (min-width: 768px) {
-          .dd-body { padding: 28px 32px; flex-direction: row !important; }
-          .dd-side { width: 308px !important; flex-shrink: 0 !important; }
-          .dd-hero-top { flex-direction: row !important; gap: 0 !important; }
-          .dd-amount { text-align: right !important; }
-          .dd-hero-pad { padding: 24px 28px !important; }
-          .dd-ms-pad { padding: 16px 28px 20px !important; }
-          .dd-tabs { padding: 0 28px !important; }
-          .dd-tab-content { padding: 24px 28px !important; }
-          .dd-ms-label { font-size: 11px !important; }
-        }
-      `}</style>
+      <style>{RESPONSIVE_CSS}</style>
 
       {/* ── PAGE BODY ── */}
       <div className="dd-body" style={{ display: 'flex', gap: 20, alignItems: 'flex-start' }}>

@@ -22,11 +22,8 @@ type EyebrowProps = {
 }
 
 export const Logo = ({ className = '' }: LogoProps) => (
-  <div className={`flex items-center gap-2 ${className}`}>
-    <div className="relative w-8 h-8 rounded-[10px] bg-[#0d2a1f] flex items-center justify-center">
-      <span className="font-serif text-[#f4efe6] text-[18px] leading-none font-semibold">A</span>
-    </div>
-    <span className="font-serif text-[20px] font-medium tracking-tight">Rakhwali pk</span>
+  <div className={`flex items-center ${className}`}>
+    <img src="/logo.webp" alt="Rakhwali PK" className="h-9 w-auto object-contain" />
   </div>
 )
 

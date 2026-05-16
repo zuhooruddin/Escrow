@@ -111,9 +111,7 @@ export default function RegisterPage() {
   return (
     <>
       <nav className="relative z-20 flex h-14 items-center justify-between bg-upwork-green px-6 md:hidden">
-        <Link href="/" className="font-display text-[1.1rem] font-extrabold tracking-tight text-white no-underline">
-          Escrow<span className="text-saffron">PK</span>
-        </Link>
+        <Link href="/" className="no-underline"><img src="/logo.webp" alt="Rakhwali PK" className="h-10 w-auto object-contain rounded-xl bg-white/90 p-1.5" /></Link>
         <div className="flex gap-4">
           <button type="button" aria-label="Menu" className="flex cursor-pointer items-center border-0 bg-transparent p-1 text-white/70">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -134,10 +132,9 @@ export default function RegisterPage() {
           <GridPattern className="pointer-events-none absolute -right-10 -top-10 h-[360px] w-[360px] text-emerald2-200/[0.12]" />
           <GridPattern className="pointer-events-none absolute -bottom-[60px] -left-[60px] h-[280px] w-[280px] text-emerald2-200/[0.08]" />
 
-          <Link href="/" className="relative z-10 hidden font-display text-xl font-extrabold tracking-tight text-white no-underline md:block">
-            Escrow<span className="text-saffron">PK</span>
+   <Link href="/" className="relative z-10 hidden md:block">
+          <img src="/logo.png" alt="Rakhwali PK" className="h-32 w-auto object-contain " />
           </Link>
-
           <div className="relative z-10">
             <h1 className="mb-4 font-display text-[clamp(1.75rem,3vw,2.4rem)] font-extrabold leading-tight tracking-tightest text-white">
               Pakistan&apos;s most trusted escrow platform

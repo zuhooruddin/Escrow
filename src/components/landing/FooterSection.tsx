@@ -15,16 +15,18 @@ const FooterSection = () => (
 
       {/* Brand */}
       <div className="col-span-2 md:col-span-1">
-        <Link href={LANDING_HREF.home} className="opacity-90 hover:opacity-100 transition-opacity">
-          <Logo className="[&_span]:text-[#E0DCCA] [&_span]:text-xl" />
-        </Link>
+<Link href={LANDING_HREF.home} className="group inline-flex items-center">
+  <img
+    src="/logo.webp"
+    alt="Rakhwali.pk"
+    className="h-14 md:h-16 lg:h-20 w-auto object-contain"
+  />
+</Link>
         <p className="mt-3 leading-relaxed" style={{ fontSize: 14, color: '#B1B1A5' }}>
           Configure, create, trade with trust.<br />
           Safe. Fair. Simple. Instant infrastructure.
         </p>
-        <p className="mt-5 uppercase tracking-widest" style={{ fontSize: 12, color: '#B1B1A5', opacity: 0.5 }}>
-          &copy; 2025 Rakhwali pk Contributors Pvt. Ltd.
-        </p>
+      
       </div>
 
       {/* Product */}

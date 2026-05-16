@@ -58,9 +58,7 @@ export default function Navbar() {
 
           {/* ── LOGO ── */}
           <Link href={isAuthenticated ? (isAdmin ? '/admin' : '/dashboard') : '/'} className="flex items-center gap-1">
-            <span className="text-2xl font-bold tracking-tight text-ink">
-              Escrow<span className="text-upwork-green">PK</span>
-            </span>
+            <img src="/logo.webp" alt="Rakhwali PK" className="h-11 w-auto object-contain" style={{mixBlendMode:'multiply'}} />
           </Link>
 
           {/* ── DESKTOP NAV ── */}

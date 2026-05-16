@@ -39,11 +39,8 @@ export default function NavSection() {
   return (
     <header className="font-landing sticky top-0 z-50 border-b border-[#e0ddd4] bg-[rgba(249,249,247,0.92)] backdrop-blur-xl supports-[backdrop-filter]:bg-[rgba(249,249,247,0.88)]">
       <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-7">
-        <Link href={LANDING_HREF.home} className="flex items-center gap-2.5 no-underline">
-          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[7px] bg-[#0d2a1f]">
-            <span className="text-[13px] font-semibold leading-none text-white">A</span>
-          </div>
-          <span className="text-[15px] font-medium tracking-tight text-[#0d2a1f]">Rakhwali pk</span>
+        <Link href={LANDING_HREF.home} className="flex items-center no-underline">
+          <img src="/logo.webp" alt="Rakhwali PK" className="h-14 w-auto object-contain" />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

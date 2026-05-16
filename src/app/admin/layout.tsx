@@ -85,9 +85,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center flex-shrink-0">
               <ShieldCheck size={16} className="text-white" />
             </div>
-            <span className="text-white font-bold text-lg tracking-tight">
-              Escrow<span className="text-emerald-400">PK</span>
-            </span>
+            <img src="/logo.webp" alt="Rakhwali PK" className="h-10 w-auto object-contain rounded-lg bg-white p-1" />
           </div>
 
           {/* Nav */}

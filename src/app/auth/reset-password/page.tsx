@@ -333,7 +333,7 @@ function ResetPasswordContent() {
 
       {/* Mobile nav */}
       <nav className="epk-mobile-nav">
-        <Link href="/" className="epk-mobile-nav-logo">Escrow<em>PK</em></Link>
+        <Link href="/" className="epk-mobile-nav-logo"><img src="/logo.webp" alt="Rakhwali PK" className="h-10 w-auto object-contain rounded-xl bg-white/90 p-1.5" /></Link>
         <div className="epk-mobile-nav-icons">
           <button aria-label="Menu">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -357,8 +357,9 @@ function ResetPasswordContent() {
           <GridPattern className="epk-left-pattern" />
           <GridPattern className="epk-left-pattern-b" />
 
-          <Link href="/" className="epk-left-logo">Escrow<em>PK</em></Link>
-
+   <Link href="/" className="relative z-10 hidden md:block">
+          <img src="/logo.png" alt="Rakhwali PK" className="h-32 w-auto object-contain " />
+          </Link>
           <div className="epk-left-body">
             <h1>Create a strong new password</h1>
             <p>

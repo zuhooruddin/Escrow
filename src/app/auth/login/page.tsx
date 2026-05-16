@@ -1,3 +1,4 @@
+
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
@@ -73,9 +74,13 @@ export default function LoginPage() {
 
   return (
     <>
-      <nav className="relative z-20 flex h-14 items-center justify-between bg-upwork-green px-6 md:hidden">
-        <Link href="/" className="font-display text-[1.1rem] font-extrabold tracking-tight text-white no-underline">
-          Escrow<span className="text-saffron">PK</span>
+      <nav className="relative z-20 flex h-34 items-center justify-between bg-upwork-green px-6 md:hidden">
+        <Link href="/" className="no-underline">
+<img
+  src="/logo.webp"
+  alt="Rakhwali PK"
+  className="h-14 md:h-16 lg:h-20 w-auto object-contain mix-blend-multiply"
+/>
         </Link>
         <div className="flex gap-4">
           <button type="button" aria-label="Menu" className="flex cursor-pointer items-center border-0 bg-transparent p-1 text-white/70">
@@ -97,8 +102,8 @@ export default function LoginPage() {
           <GridPattern className="pointer-events-none absolute -right-10 -top-10 h-[360px] w-[360px] text-emerald2-200/[0.12]" />
           <GridPattern className="pointer-events-none absolute -bottom-[60px] -left-[60px] h-[280px] w-[280px] text-emerald2-200/[0.08]" />
 
-          <Link href="/" className="relative z-10 hidden font-display text-xl font-extrabold tracking-tight text-white no-underline md:block">
-            Escrow<span className="text-saffron">PK</span>
+          <Link href="/" className="relative z-10 hidden md:block">
+          <img src="/logo.png" alt="Rakhwali PK" className="h-32 w-auto object-contain " />
           </Link>
 
           <div className="relative z-10">

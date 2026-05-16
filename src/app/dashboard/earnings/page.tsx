@@ -1,8 +1,10 @@
 'use client';
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { Wallet, TrendingUp, Clock, CheckCircle2, ArrowRight, Download } from 'lucide-react';
+import { Wallet, TrendingUp, Clock, CheckCircle2, ArrowRight, Download, Loader2 } from 'lucide-react';
+import toast from 'react-hot-toast';
 import api from '@/lib/api';
 import { useAuthStore } from '@/lib/store';
 import { formatPKR, formatDate, getInitials, cn } from '@/lib/utils';
@@ -142,18 +144,53 @@ export default function EarningsPage() {
 }
 
 function EarningsRow({ deal, showPayout }: { deal: any; showPayout?: boolean }) {
+  const [downloading, setDownloading] = useState(false);
+
+  const downloadReceipt = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (deal.status !== 'COMPLETED') return;
+    setDownloading(true);
+    try {
+      const res = await api.get(`/deals/${deal._id}/receipt`, { responseType: 'blob' });
+      const url = URL.createObjectURL(new Blob([res.data], { type: 'application/pdf' }));
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `receipt-${deal.dealNumber}.pdf`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch {
+      toast.error('Could not download receipt.');
+    } finally {
+      setDownloading(false);
+    }
+  };
+
   return (
     <Link href={`/dashboard/deals/${deal._id}`} className="flex items-center gap-4 py-3.5 hover:bg-gray-50/70 -mx-6 px-6 transition-colors group">
       <div>
         <p className="text-sm font-medium text-ink group-hover:text-upwork-green transition-colors line-clamp-1">{deal.title}</p>
         <p className="text-xs text-gray-400 mt-0.5">{deal.dealNumber} · {formatDate(deal.updatedAt)}</p>
       </div>
-      <div className="ml-auto flex items-center gap-4 flex-shrink-0">
+      <div className="ml-auto flex items-center gap-3 flex-shrink-0">
         <StatusBadge status={deal.status} />
         <div className="text-right">
           <p className="text-sm font-semibold text-upwork-green">{formatPKR(deal.sellerPayoutInPaisa)}</p>
           {showPayout && <p className="text-xs text-gray-400">after 2% fee</p>}
         </div>
+        {deal.status === 'COMPLETED' && (
+          <button
+            onClick={downloadReceipt}
+            disabled={downloading}
+            title="Download PDF receipt"
+            className="p-1.5 rounded-lg text-gray-400 hover:text-upwork-green hover:bg-upwork-green-l transition-colors disabled:opacity-50"
+          >
+            {downloading
+              ? <Loader2 size={14} className="animate-spin" />
+              : <Download size={14} />
+            }
+          </button>
+        )}
         <ArrowRight size={14} className="text-gray-300 group-hover:text-upwork-green" />
       </div>
     </Link>

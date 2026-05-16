@@ -185,8 +185,10 @@ export default function CreateDealPage() {
                     <CheckCircle2 size={18} className="text-upwork-green ml-auto" />
                   </div>
                 )}
-                {sellerSearch.includes('@') && sellerSearch.length > 4 && sellerData?.user === null && (
-                  <p className="text-xs text-danger mt-1.5">No user found with this email. They need to register first.</p>
+                {sellerSearch.includes('@') && sellerSearch.length > 4 && !searchingUser && sellerData?.user === null && (
+                  <p className="text-xs text-amber-600 mt-1.5">
+                    This email is not registered yet — an invitation link will be sent to them when you create the deal.
+                  </p>
                 )}
               </div>
             </>
@@ -276,7 +278,7 @@ export default function CreateDealPage() {
               <div className="flex items-start gap-3 p-4 bg-blue-50 border border-blue-200 rounded-lg">
                 <Info size={16} className="text-blue-500 flex-shrink-0 mt-0.5" />
                 <p className="text-xs text-blue-700 leading-relaxed">
-                  The seller will be notified by email and SMS. Once they accept, you'll be asked to deposit the escrow amount. Funds are only released when you approve the work.
+                  The seller will be notified by email. If they don't have an account yet, they'll receive a link to register. Once they accept, you'll be asked to deposit the escrow amount. Funds are only released when you approve the work.
                 </p>
               </div>
             </div>

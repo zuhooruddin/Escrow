@@ -59,6 +59,7 @@ export const STATUS_CONFIG: Record<DealStatus, { label: string; color: string; b
   CANCELLED: { label: 'Cancelled', color: 'text-gray-500',    bg: 'bg-gray-100  border-gray-200',   dot: 'bg-gray-300' },
 };
 
+
 export function getStatusConfig(status: string) {
   return STATUS_CONFIG[status as DealStatus] || STATUS_CONFIG.CANCELLED;
 }
